@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json()); // When we want to be able to accept JSON.
 
 
-const houses = require('./db.json')
+const favorites = require('./db.json')
 let globalId = 4
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,6 @@ app.post("/api/favorite", (req, res) => {
   res.status(200).send(favorites)
   globalId++
 })
-
-
-
 
 
 
