@@ -1,0 +1,68 @@
+  
+  main {
+    display: flex; 
+    justify-content: center;
+  } 
+  
+  form {
+    width: 300px;
+    height: 300px;
+    background-color: rgb(76, 91, 231);
+    position: relative;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-evenly; 
+    align-items: center;
+    margin: 30px;
+  }
+  
+
+  input[type='text'] {
+    width: 85%;
+    height: 30px;
+    border: none;
+    border-bottom: 2px solid #232323;
+    color: #232323;
+    background-color: snow;
+  }
+  
+  #city-container {
+    width: 85%;
+  }
+  
+  #favorites-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .movie-cover-image {
+    width: 300px; 
+    height: 300px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .favorite-card {
+    background-color: turquoise;
+    width: 300px;
+    margin: 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  
+  .name {
+    font-size: 18px;
+    margin: 5px 0;
+  }
+  
+  .city {
+    font-size: 15px;
+    margin: 5px 0;
+  }
+  

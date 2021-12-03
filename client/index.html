@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Back End Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="container">
+
+    <button id="complimentButton">Get a compliment</button>
+    <button id="fortuneButton">Get a fortune</button>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <main>
+
+      <form>
+          <input 
+              type='text'
+              id="name"
+              placeholder="Your name?"/>
+          <input 
+              type='text'
+              id="city"
+              placeholder='Favorite city?'/>
+          <input 
+              type='text'
+              id="movie"
+              placeholder='Paste an movie image URL'/>
+          <button>add favorite</button>
+      </form>
+  
+      <section id="favorites-container"></section>
+  
+      </main>
+
+    <script>
+
+      document.getElementById("complimentButton").onclick = function () {
+        axios.get("http://localhost:4000/api/compliment/")
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+
+      document.getElementById("fortuneButton").onclick = function () {
+        axios.get("http://localhost:4000/api/fortune/")
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+
+      const butComp = document.getElementById('complimentButton')
+      const butFort = document.getElementById('fortuneButton')
+
+      butComp.addEventListener('mouseover', () => {
+        butComp.style.backgroundColor = 'blue'
+        butComp.style.color = 'white'
+      })
+      butComp.addEventListener('mouseout', () => {
+        butComp.style.backgroundColor = 'darkgoldenrod'
+        butComp.style.color = 'darkblue'
+      })
+
+      butFort.addEventListener('mouseover', () => {
+        butFort.style.backgroundColor = 'green'
+        butFort.style.color = 'yellow'
+      })
+      butFort.addEventListener('mouseout', () => {
+        butFort.style.backgroundColor = 'lightblue'
+        butFort.style.color = 'orange'
+      })
+/////////////////////////////////////////////////////////////////////////////////
+      const favoritesContainer = document.querySelector('#favorites-container')
+      const form = document.querySelector('form')
+
+      const baseURL = `http://localhost:4000/api/favorite`
+
+      const favoritesCallback = ({ data: faforites }) => displayFavorites(faforites)
+      const errCallback = err => console.log(err)
+
+      const getFavorites = () => axios.get(baseURL).then(favoritesCallback).catch(errCallback)
+      const createFavorite = body => axios.post(baseURL, body).then(favoritesCallback).catch(errCallback)
+      const deleteFavorite = id => axios.delete(`${baseURL}/${id}`).then(favoritesCallback).catch(errCallback)
+      
+
+      function submitHandler(e) {
+          e.preventDefault()
+
+          let name = document.querySelector('#name')
+          let city = document.querySelector('#city')
+          let movie = document.querySelector('#movie')
+
+          let bodyObj = {
+              name: name.value,
+              city: city.value, 
+              movie: movie.value
+          }
+
+          createFavorite(bodyObj)
+
+          name.value = ''
+          city.value = ''
+          movie.value = ''
+      }
+
+      function createFavoriteCard(favorite) {
+          const favoriteCard = document.createElement('div')
+          favoriteCard.classList.add('favorite-card')
+
+          favoriteCard.innerHTML = `<img alt='movie cover image' src=${favorite.imageURL} class="favorite-cover-image"/>
+          
+          <div class="btns-container">
+
+              <p class="">${favorite.name}</p>
+              <p class="favorite-city">$${favorite.city}</p>
+              
+          </div>
+
+          <button onclick="deleteFavorite(${favorite.id})">Delete</button>
+          `
+
+
+          favoritesContainer.appendChild(favoriteCard)
+      }
+
+      function displayFavorites(arr) {
+          favoritesContainer.innerHTML = ``
+          for (let i = 0; i < arr.length; i++) {
+              createFavoriteCard(arr[i])
+          }
+      }
+
+      form.addEventListener('submit', submitHandler)
+
+      getFavorites()
+
+
+
+    </script>
+  </body>
+</html>
