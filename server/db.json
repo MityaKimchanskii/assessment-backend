@@ -2,21 +2,21 @@
 {
     "id": 1,
     "name": "Roma",
-    "place": "LA",
-    "movie" : "https://thewestburytimes.com/wp-content/uploads/2020/07/TNH-Movies.jpg"
+    "city": "LA",
+    "movie" : "Interstellar"
   },
 
   {
     "id": 2,
     "name": "Victor",
-    "place": "Moscow",
-    "movie" : "https://catholicreview.org/wp-content/uploads/2021/07/20210623T1100-MOVIE-REVIEW-F9-FAST-SAGA-1250672.jpg"
+    "city": "Moscow",
+    "movie" : "Forest Gamp"
   },
 
   {
     "id": 3,
     "name": "Tom",
-    "place": "NY",
-    "movie" : "https://lumiere-a.akamaihd.net/v1/images/p_blackwidow_21043_v2_6d1b73b8.jpeg"
+    "city": "NY",
+    "movie" : "I am a Legend"
   }
 ]

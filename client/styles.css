@@ -37,15 +37,13 @@
     align-items: center;
   }
   
-  .movie-cover-image {
-    width: 300px; 
-    height: 300px;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+  .movie{
+    font-size: 18px;
+    margin: 5px 0;
   }
   
   .favorite-card {
-    background-color: turquoise;
+    background-color: rgb(154, 129, 241);
     width: 300px;
     margin: 20px; 
     display: flex;

@@ -25,7 +25,7 @@
           <input 
               type='text'
               id="movie"
-              placeholder='Paste an movie image URL'/>
+              placeholder='Favorite movie'/>
           <button>add favorite</button>
       </form>
   
@@ -109,13 +109,12 @@
           const favoriteCard = document.createElement('div')
           favoriteCard.classList.add('favorite-card')
 
-          favoriteCard.innerHTML = `<img alt='movie cover image' src=${favorite.imageURL} class="favorite-cover-image"/>
+          favoriteCard.innerHTML = `
           
-          <div class="btns-container">
-
-              <p class="">${favorite.name}</p>
-              <p class="favorite-city">$${favorite.city}</p>
-              
+          <div class="container">
+              <p class="movie">${favorite.movie}</p>
+              <p class="name">${favorite.name}</p>
+              <p class="city">${favorite.city}</p>
           </div>
 
           <button onclick="deleteFavorite(${favorite.id})">Delete</button>
