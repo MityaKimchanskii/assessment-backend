@@ -6,6 +6,10 @@ const app = express();
 app.use(cors());
 app.use(express.json()); // When we want to be able to accept JSON.
 
+
+const houses = require('./db.json')
+let globalId = 4
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.get("/api/compliment", (req, res) => {
   const compliments = ["Gee, you're a smart cookie!",
@@ -41,17 +45,27 @@ app.get("/api/fortune", (req, res) => {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const {
-  getFavorites,
-  deleteFavorite, 
-  createFavorite, 
-  // updateFavorite
-} = require('./controller')
+app.get("/api/favorite", (req, res) => res.status(200).send(favorites))
 
+app.delete("/api/favorite/:id", (req, res) => {
+  let index = favorites.findIndex(elem => elem.id === +req.params.id)
+  favorites.splice(index, 1)
+  res.status(200).send(favorites)
+})
 
-app.get("/api/favorite", getFavorites)
-app.delete("/api/favorite/:id", deleteFavorite)
-app.post("/api/favorite", createFavorite)
+app.post("/api/favorite", (req, res) => {
+  let { name, city, movie } = req.body
+  let newFavorite = {
+      id: globalId,
+      name, 
+      city,
+      movie
+  }
+  favorites.push(newFavorite)
+  res.status(200).send(favorites)
+  globalId++
+})
+
 
 
 
